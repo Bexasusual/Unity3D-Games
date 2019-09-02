@@ -6,14 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject AnswerCanvas;
+    public GameObject PauseCanvas;
     public GameObject BoxManager;
+
     public AudioClip CorrectAudio;
     public AudioClip CorrectAudio2;
     public AudioClip IncorrectAudio;
     private AudioSource Audio;
 
     private int state;
+    private int oldState;
     private bool isCorrect;
+
+    //
+    private bool isPaused;
 
     private int lives;
     private int level; //也可以传值得到
@@ -24,12 +30,13 @@ public class GameController : MonoBehaviour
         int answer = int.Parse(ob[1].ToString());
         AnswerCanvas.SetActive(true);
         AnswerCanvas.SendMessage("GiveOptions", answer);
-        AnswerCanvas.SendMessage("ShowQuestion", id);
 
-        //object[] message = new object[2];
-        //message[0] = id;
-        //message[1] = ob[1].ToString();
-        //AnswerCanvas.SendMessage("ShowQuestion", message);
+        //AnswerCanvas.SendMessage("ShowQuestion", id);
+
+        object[] message = new object[2];
+        message[0] = id;
+        message[1] = ob[1].ToString();
+        AnswerCanvas.SendMessage("ShowQuestion", message);
 
         BoxManager.SendMessage("ShowOrder");
     }
@@ -79,24 +86,62 @@ public class GameController : MonoBehaviour
 
     public void ChangeState(int State)
     {
+        oldState = state; //
         state = State; //
+    }
+
+    public void Continue()
+    {
+        isPaused = false;
+        Time.timeScale = 1F;
+        PauseCanvas.SetActive(false);
+        if (AnswerCanvas.activeSelf)
+        {
+            AnswerCanvas.SendMessage("OnPause", false);
+        }
+        state = oldState;
     }
 
     void Start()
     {
         Audio = GetComponent<AudioSource>();
         state = 0; //
+        oldState = state;
         lives = 3; //changeable
         level = 0;
         isCorrect = false;
+        isPaused = false;
         AnswerCanvas.SetActive(false);
+        PauseCanvas.SetActive(false);
     }
 
     void Update() //所有按键点击由GameController控制
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Title");
+            if (isPaused)
+            {
+                isPaused = false;
+                Time.timeScale = 1F;
+                PauseCanvas.SetActive(false);
+                if (AnswerCanvas.activeSelf)
+                {
+                    AnswerCanvas.SendMessage("OnPause", false);
+                }
+                state = oldState; //Restore
+            }
+            else
+            {
+                isPaused = true;
+                Time.timeScale = 0F;
+                PauseCanvas.SetActive(true);
+                if (AnswerCanvas.activeSelf)
+                {
+                    AnswerCanvas.SendMessage("OnPause", true);
+                }
+                oldState = state;
+                state = 0;//
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -107,6 +152,7 @@ public class GameController : MonoBehaviour
                     break;
                 case 1: //wait to rotate
                     BoxManager.SendMessage("StartRotation"); //晋升大关时需要暂停以显示值
+                    oldState = state;
                     state = 2; //旋转，显示题目，无事可做
                     break;
                 case 2: //answerQuestion

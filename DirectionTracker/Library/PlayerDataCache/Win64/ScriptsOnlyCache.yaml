@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - GameController
     - HelpController
     - MakeChoice
+    - PauseController
     - Rotation
     - StartController
     UnityEditor.TestRunner.dll:
@@ -138,6 +139,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10990}
     - Class: 114
       Script: {instanceID: 11328}
+    - Class: 114
+      Script: {instanceID: 18144}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -396,7 +399,7 @@ ScriptsOnlyBuild:
     className: Rotation
   - hash:
       serializedVersion: 2
-      Hash: cd96773263060e45b600d37b5e21540c
+      Hash: 8da1548ca2fa6e5aad4370e2331fac24
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AnswerController
@@ -498,7 +501,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 4a69537b732438e849eecc203325586f
+      Hash: 45bf52d9b9c13892131562c548250e0d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -676,9 +679,16 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: ad819a9574d0c1c4316bce32d01d6b44
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Title.unity
   - Assets/Scenes/Help.unity
   - Assets/Scenes/Main.unity
-  playerPath: C:/Users/BluE/Desktop/BluE/UnityGames/DirectionTracker Ver1.0/DirectionTracker.exe
+  playerPath: C:/Users/BluE/Desktop/BluE/UnityGames/DirectionTracker Ver1.0(Developer
+    Version)/DirectionTracker.exe

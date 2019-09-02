@@ -11,10 +11,14 @@ using UnityEngine.UI;
 
 public class AnswerController : MonoBehaviour
 {
-    public GameObject btn1; //也可使用数组
-    public GameObject btn2;
-    public GameObject btn3;
-    public GameObject btn4;
+    public Button btn1;
+    public Button btn2;
+    public Button btn3;
+    public Button btn4;
+    //public GameObject btn1; //也可使用数组
+    //public GameObject btn2;
+    //public GameObject btn3;
+    //public GameObject btn4;
 
     public GameObject GameManager;
     public Text question;
@@ -25,18 +29,36 @@ public class AnswerController : MonoBehaviour
     private float timer;
     private bool isDisplayJudge;
 
-    public void ShowQuestion(string id) //正式版本
+    public void OnPause(bool isPaused)
     {
-        question.text = "\t\tWhat's the value of\n\t\t\t\tBox " + id + " ?";
+        if (isPaused)
+        {
+            btn1.interactable = false;
+            btn2.interactable = false;
+            btn3.interactable = false;
+            btn4.interactable = false;
+        }
+        else
+        {
+            btn1.interactable = true;
+            btn2.interactable = true;
+            btn3.interactable = true;
+            btn4.interactable = true;
+        }
     }
 
-    //public void ShowQuestion(object[] message) //测试版本
+    //public void ShowQuestion(string id) //正式版本
     //{
-    //    string id = message[0].ToString();
-    //    string answer = message[1].ToString();
-    //    question.text = "\t\tWhat's the value of\n\t\t\t\tBox " + id + " ?"
-    //        + " (" + answer + ")";
+    //    question.text = "\t\tWhat's the value of\n\t\t\t\tBox " + id + " ?";
     //}
+
+    public void ShowQuestion(object[] message) //测试版本
+    {
+        string id = message[0].ToString();
+        string answer = message[1].ToString();
+        question.text = "\t\tWhat's the value of\n\t\t\t\tBox " + id + " ?"
+            + " (" + answer + ")";
+    }
 
     public void AssignValue(int id, int answer)
     {

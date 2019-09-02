@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\HelpController.cs" />
     <Compile Include="Assets\Scripts\MakeChoice.cs" />
+    <Compile Include="Assets\Scripts\PauseController.cs" />
     <Compile Include="Assets\Scripts\Rotation.cs" />
     <Compile Include="Assets\Scripts\StartController.cs" />
     <Reference Include="Unity.Timeline.Editor">
