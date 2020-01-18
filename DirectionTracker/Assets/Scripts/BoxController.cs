@@ -25,6 +25,7 @@ public class BoxController : MonoBehaviour
 
     void Start()
     {
+        setBoxes();
         level = 0;
         AddLevel();
         CheckLevel();
@@ -51,6 +52,18 @@ public class BoxController : MonoBehaviour
             curStep = 0;
         }
         GameManager.SendMessage("ChangeState", 1);
+    }
+
+    private void setBoxes()
+    {
+        BoxArray[0] = GameObject.Find("Box (1)");
+        BoxArray[1] = GameObject.Find("Box (2)");
+        BoxArray[2] = GameObject.Find("Box (3)");
+        BoxArray[3] = GameObject.Find("Box (4)");
+        BoxArray[4] = GameObject.Find("Box (5)");
+        BoxArray[5] = GameObject.Find("Box (6)");
+        BoxArray[6] = GameObject.Find("Box (7)");
+        BoxArray[7] = GameObject.Find("Box (8)");
     }
 
     private void AddLevel()
