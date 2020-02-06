@@ -1,0 +1,7 @@
+You can use the Pause Function flexibly to track changes at each step if you feel the game is difficult.
+
+The game has no timing system so you don't need to compare with others.
+
+You just have to compete with yourself.
+
+PS. The developer version will show the answer directly together with the question.
